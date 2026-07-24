@@ -1,6 +1,7 @@
 import { imageObjectLicensing } from "@/lib/schemaImageLicensing";
+import { BRAND, IMAGES, SITE_ORIGIN } from "@/lib/siteConfig";
 
-const BASE = "https://cardrummyapp.com.pk";
+const BASE = SITE_ORIGIN;
 
 function safeJsonLd(obj: object): string {
   return JSON.stringify(obj).replace(/</g, "\\u003c");
@@ -14,7 +15,6 @@ type BlogPostSchemaProps = {
   dateModified?: string;
   image?: string;
   breadcrumbOnly?: boolean;
-  /** Key summary or first 2-3 paragraphs for AI parsing and articleBody */
   articleBody?: string;
 };
 
@@ -24,7 +24,7 @@ export default function BlogPostSchema({
   slug,
   datePublished,
   dateModified,
-  image = `${BASE}/card-rummy-logo.webp`,
+  image = `${BASE}${IMAGES.logo}`,
   breadcrumbOnly = false,
   articleBody,
 }: BlogPostSchemaProps) {
@@ -46,15 +46,15 @@ export default function BlogPostSchema({
     description,
     url,
     image,
-    author: { "@type": "Organization", name: "Card Rummy", url: BASE },
+    author: { "@type": "Organization", name: BRAND.name, url: BASE },
     publisher: {
       "@type": "Organization",
-      name: "Card Rummy",
+      name: BRAND.name,
       logo: {
         "@type": "ImageObject",
-        url: `${BASE}/card-rummy-logo.webp`,
+        url: `${BASE}${IMAGES.logo}`,
         ...imageObjectLicensing,
-        creditText: "Card Rummy logo",
+        creditText: `${BRAND.name} logo`,
       },
     },
     datePublished,

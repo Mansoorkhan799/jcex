@@ -1,151 +1,143 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
+import Link from "next/link";
+import Script from "next/script";
+import { Metadata } from "next";
+import { BRAND, ROUTES, SITE_ORIGIN } from "@/lib/siteConfig";
+
+const PAGE_URL = `${SITE_ORIGIN}${ROUTES.disclaimer}`;
+const PAGE_TITLE = "Disclaimer & Responsible Gaming | Alano DT 6";
+const PAGE_DESCRIPTION =
+  "Alano DT 6 disclaimer: 18+ only, no guaranteed income, risk warnings, and responsible gaming guidance for players in Pakistan.";
 
 export const metadata: Metadata = {
-  title: 'Disclaimer - Card Rummy | Legal Information',
-  description: 'Read the disclaimer for Card Rummy. Important legal information about the use of this blog and third-party platforms.',
-  keywords: ['Card Rummy disclaimer', 'legal disclaimer', 'terms', 'conditions', 'gambling disclaimer'],
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  alternates: { canonical: PAGE_URL },
+  robots: { index: true, follow: true },
   openGraph: {
-    title: 'Disclaimer - Card Rummy',
-    description: 'Legal disclaimer and important information about Card Rummy.',
-    url: 'https://cardrummyapp.com.pk/disclaimer',
-    siteName: 'Card Rummy',
-    type: 'website',
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: PAGE_URL,
+    siteName: BRAND.name,
+    type: "website",
   },
-  twitter: {
-    card: 'summary',
-    title: 'Disclaimer - Card Rummy',
-    description: 'Legal disclaimer and important information about Card Rummy.',
-  },
-  alternates: {
-    canonical: 'https://cardrummyapp.com.pk/disclaimer',
-  },
-  robots: {
-    index: true,
-    follow: true,
-  }
 };
 
-export default function Disclaimer() {
+const points = [
+  {
+    title: "18+ Only",
+    body: "Alano DT 6 is intended solely for users aged 18 and above. If you are under 18, do not download, install, or use the app.",
+  },
+  {
+    title: "No Income Guarantee",
+    body: "Alano DT 6 is a game of chance combined with elements of skill on certain tables. Nothing on alanodt6.com.pk or inside the app guarantees winnings, income, or a specific return on any deposit. Any figures, screenshots, or testimonials shown are illustrative and not a promise of results.",
+  },
+  {
+    title: "Play With Money You Can Afford to Lose",
+    body: "Only deposit amounts you can comfortably afford to lose. Treat gameplay as entertainment, not as a source of guaranteed income or a way to solve financial difficulty.",
+  },
+  {
+    title: "Independent Third-Party App",
+    body: "This website provides installation guides and information about the Alano DT 6 app. We are an independent information resource and are not liable for in-app outcomes, bonus terms changes, or third-party payment processor delays.",
+  },
+  {
+    title: "Local Laws Apply",
+    body: "You are responsible for confirming that using real-money gaming apps complies with the laws and regulations applicable in your specific location within Pakistan before you play.",
+  },
+  {
+    title: "Accuracy of Guides",
+    body: "We update our install, deposit, and withdrawal guides to match the app as closely as possible, but screens and steps can change with new app versions. Always follow the in-app prompts if they differ from what's described here.",
+  },
+];
+
+const responsibleTips = [
+  "Set a session time and spending limit before you open any table.",
+  "Never chase losses by increasing bets beyond your planned budget.",
+  "Take regular breaks, especially during long sessions.",
+  "Avoid playing when stressed, upset, or under the influence of alcohol.",
+  "If gaming stops feeling like entertainment, stop and take a break from the app.",
+  "Keep your account and withdrawal password private to protect your balance.",
+];
+
+export default function DisclaimerPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_ORIGIN },
+      { "@type": "ListItem", position: 2, name: "Disclaimer", item: PAGE_URL },
+    ],
+  };
+
   return (
-    <div className="min-h-screen bg-primary py-12 px-4">
-      <div className="container mx-auto">
-        <div className="max-w-4xl mx-auto">
-          {/* Hero Section */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">Disclaimer</h1>
-            <p className="text-lg text-gray-400">Please read this disclaimer carefully before using our website</p>
-          </div>
-          
-          {/* Main Content */}
-          <div className="bg-secondary rounded-2xl shadow-xl p-8 md:p-12">
-            <div className="prose prose-lg max-w-none">
-              {/* Warning Banner */}
-              <div className="bg-[#0A1029] border-l-4 border-accent p-6 mb-8 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd"></path>
-                  </svg>
-                  <div>
-                    <h3 className="text-xl font-bold text-accent mb-2">Important Notice</h3>
-                    <p className="text-accent mb-0">
-                      Please read this disclaimer carefully. By using this website, you agree to the terms outlined below.
-                    </p>
-                  </div>
-                </div>
-              </div>
+    <>
+      <Script id="disclaimer-breadcrumb-schema" type="application/ld+json" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-              {/* Main Disclaimer Content */}
-              <div className="space-y-6 text-gray-300">
-                <p className="text-lg leading-relaxed">
-                  The information provided on this blog (<a href="https://www.cardrummyapp.com.pk" className="text-accent hover:text-accent font-semibold" target="_blank" rel="noopener noreferrer">www.cardrummyapp.com.pk</a>) about <Link href="/" className="text-accent hover:underline font-semibold">Card Rummy</Link> is for <strong>general informational and entertainment purposes only</strong>. We do not host, promote, or encourage any form of gambling or betting activities.
-                </p>
+      <nav aria-label="Breadcrumb" className="max-w-4xl mx-auto px-4 md:px-8 pt-6">
+        <ol className="flex flex-wrap items-center gap-2 text-sm text-gray-400">
+          <li>
+            <Link href={ROUTES.home} className="hover:text-accent transition-colors">
+              Home
+            </Link>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li className="text-white" aria-current="page">
+            Disclaimer
+          </li>
+        </ol>
+      </nav>
 
-                <div className="bg-[#0A1029] rounded-xl p-6 border border-accent">
-                  <h2 className="text-2xl font-bold mb-4 text-white">⚠️ Important Warnings</h2>
-                  <ul className="space-y-3 text-gray-300">
-                    <li className="flex items-start">
-                      <span className="text-accent mr-2 font-bold">•</span>
-                      <span>Card Rummy is a card game that may involve <strong>real money</strong> when played on certain platforms.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-accent mr-2 font-bold">•</span>
-                      <span>Users are advised to be aware of their <strong>local laws and regulations</strong> related to online gaming and gambling before engaging with any app or website mentioned.</span>
-                    </li>
-              </ul>
-                </div>
-
-                <div className="bg-[#0A1029] rounded-xl p-6 border border-red-200">
-                  <h2 className="text-2xl font-bold mb-4 text-red-400">🚫 No Liability</h2>
-                  <p className="text-gray-300 leading-relaxed mb-0">
-                    We are <strong>not responsible</strong> for any loss, risk, or legal issues resulting from the use of third-party platforms. All app names, logos, and trademarks belong to their respective owners, and we do not claim any affiliation or endorsement.
-                  </p>
-                </div>
-
-                <div className="bg-[#0A1029] rounded-xl p-6 border border-blue-200">
-                  <h2 className="text-2xl font-bold mb-4 text-blue-400">📋 User Responsibility</h2>
-                  <p className="text-gray-300 leading-relaxed mb-0">
-                    By using this blog, you agree that any actions you take based on the content are <strong>strictly at your own risk</strong>. We encourage all users to:
-                  </p>
-                  <ul className="mt-4 space-y-2 text-gray-300">
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Verify local laws before engaging with any gaming platform</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Play responsibly and within your means</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Be aware of the risks involved in real money gaming</span>
-                </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Seek professional help if you have gambling concerns</span>
-                </li>
-              </ul>
-                </div>
-
-                <div className="bg-[#0A1029] rounded-xl p-6 border border-accent">
-                  <h2 className="text-2xl font-bold mb-4 text-white">™️ Trademarks & Affiliations</h2>
-                  <p className="text-gray-300 leading-relaxed mb-0">
-                    All app names, logos, and trademarks mentioned on this website belong to their respective owners. We do not claim any affiliation, endorsement, or partnership with any of the apps or platforms mentioned on this blog.
-                  </p>
-                </div>
-              </div>
-
-              {/* Contact Section */}
-              <div className="mt-12 p-6 bg-secondary rounded-xl border-2 border-accent">
-                <h2 className="text-2xl font-bold mb-4 text-white">Questions?</h2>
-                <p className="text-gray-300 mb-4">
-                  If you have any questions about this Disclaimer, please feel free to contact us.
-                </p>
-                <Link 
-                  href="/contact-us" 
-                  className="inline-block bg-accent hover:bg-accent/90 text-primary font-bold py-3 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-                >
-                  Contact Us
-                </Link>
-              </div>
-            </div>
-          </div>
+      <section className="py-8 md:py-14 px-4 md:px-8 max-w-4xl mx-auto">
+        <div className="text-center mb-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="text-white">Disclaimer &amp;</span> <span className="text-[#FFA500]">Responsible Gaming</span>
+          </h1>
+          <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            Please read this page carefully before downloading or playing Alano DT 6.
+          </p>
         </div>
-      </div>
 
-      {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "Disclaimer - Card Rummy",
-            "description": "Legal disclaimer and important information about Card Rummy website.",
-            "url": "https://cardrummyapp.com.pk/disclaimer"
-          })
-        }}
-      />
-    </div>
+        <div className="bg-gradient-to-r from-orange-600 to-orange-500 rounded-2xl p-6 md:p-8 mb-10 text-center">
+          <p className="text-white font-bold text-lg">
+            18+ ONLY · PLAY RESPONSIBLY · NO GUARANTEED INCOME
+          </p>
+        </div>
+
+        <div className="space-y-6 mb-12">
+          {points.map((p) => (
+            <div key={p.title} className="bg-[#0A1029] rounded-xl p-6 border border-gray-800">
+              <h2 className="text-xl font-semibold text-white mb-3">{p.title}</h2>
+              <p className="text-gray-300 leading-relaxed">{p.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-[#0A1029] rounded-xl p-8 border border-gray-800 mb-10">
+          <h2 className="text-2xl font-bold mb-6 text-[#FFA500]">Responsible Gaming Tips</h2>
+          <ul className="list-disc list-inside space-y-2 text-gray-300">
+            {responsibleTips.map((tip) => (
+              <li key={tip}>{tip}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="text-center">
+          <p className="text-gray-300 leading-relaxed">
+            Questions about this disclaimer or our{" "}
+            <Link href={ROUTES.privacy} className="text-accent hover:underline">
+              privacy policy
+            </Link>
+            ? Reach us via{" "}
+            <a href={`mailto:${BRAND.email}`} className="text-accent hover:underline">
+              {BRAND.email}
+            </a>{" "}
+            or our{" "}
+            <Link href={ROUTES.contact} className="text-accent hover:underline">
+              contact form
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
+    </>
   );
-} 
+}

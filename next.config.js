@@ -25,13 +25,11 @@ const nextConfig = {
 
   async redirects() {
     return [
-      // /about was indexed by Google but the real page is /about-us
       {
         source: '/about',
         destination: '/about-us',
         permanent: true,
       },
-      // Malformed URLs Google crawled — send them home
       {
         source: '/\\$',
         destination: '/',
@@ -42,20 +40,77 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      // Legacy Card Rummy slugs → Alano DT 6
+      {
+        source: '/download-card-rummy',
+        destination: '/download-alano-dt-6',
+        permanent: true,
+      },
+      {
+        source: '/deposit-money-in-card-rummy',
+        destination: '/deposit-money-in-alano-dt-6',
+        permanent: true,
+      },
+      {
+        source: '/withdraw-money-from-card-rummy',
+        destination: '/withdraw-money-from-alano-dt-6',
+        permanent: true,
+      },
+      {
+        source: '/card-rummy-for-pc',
+        destination: '/alano-dt-6-for-pc',
+        permanent: true,
+      },
+      {
+        source: '/blog/create-card-rummy-account-and-login',
+        destination: '/blog/create-alano-dt-6-account-and-login',
+        permanent: true,
+      },
+      {
+        source: '/blog/create-account-login',
+        destination: '/blog/create-alano-dt-6-account-and-login',
+        permanent: true,
+      },
+      {
+        source: '/blog/is-card-rummy-safe-legal-pakistan',
+        destination: '/blog/is-alano-dt-6-safe-pakistan',
+        permanent: true,
+      },
+      {
+        source: '/blog/card-rummy-bonuses-vip-guide',
+        destination: '/blog/alano-dt-6-bonuses-vip-guide',
+        permanent: true,
+      },
+      {
+        source: '/blog/tips-to-win-big-in-card-rummy',
+        destination: '/blog/alano-dt-6-tips-to-play-smarter',
+        permanent: true,
+      },
+      {
+        source: '/blog/card-rummy-tips-10-smart-tricks',
+        destination: '/blog/alano-dt-6-tips-to-play-smarter',
+        permanent: true,
+      },
     ];
   },
 
-  // Optimize static file serving
   async rewrites() {
     return [
       {
         source: '/.well-known/:path*',
         destination: '/public/.well-known/:path*',
       },
-      // Redirect old 3Patti Blue logo to Card Rummy logo
+      {
+        source: '/card-rummy.webp',
+        destination: '/alano-dt-6.webp',
+      },
+      {
+        source: '/card-rummy-logo.webp',
+        destination: '/alano-dt-6-logo.webp',
+      },
       {
         source: '/3-patti-blue-logo.webp',
-        destination: '/card-rummy-logo.webp',
+        destination: '/alano-dt-6-logo.webp',
       },
     ];
   },
@@ -121,13 +176,13 @@ const nextConfig = {
           },
         ],
       },
-      // Public images: long cache but allow revalidation
+      // Public images: shorter cache so brand asset swaps show up faster
       {
         source: '/:path*.webp',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=2592000, stale-while-revalidate=86400',
+            value: 'public, max-age=3600, must-revalidate',
           },
         ],
       },

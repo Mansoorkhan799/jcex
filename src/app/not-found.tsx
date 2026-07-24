@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
+import { BRAND } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
-  title: 'Page Not Found - Card Rummy',
-  description: 'The page you are looking for does not exist. Return to Card Rummy homepage.',
+  title: `Page Not Found - ${BRAND.name}`,
+  description: `The page you are looking for does not exist. Return to the ${BRAND.name} homepage.`,
   robots: {
     index: false,
     follow: true,
@@ -18,7 +19,7 @@ export default function NotFound() {
       <p className="text-lg mb-8 text-gray-300 max-w-lg mx-auto">
         The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
       </p>
-      <Link 
+      <Link
         href="/"
         className="bg-accent hover:bg-accent-hover text-[#06091F] font-bold py-3 px-8 rounded-full inline-flex items-center transition-all shadow-lg hover:shadow-xl"
       >
@@ -26,4 +27,4 @@ export default function NotFound() {
       </Link>
     </div>
   );
-} 
+}
