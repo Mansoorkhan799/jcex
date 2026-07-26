@@ -3,84 +3,181 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 2, 6, 23;
-  --background-end-rgb: 2, 6, 23;
+  --brand: #ff6a00;
+  --navy-start: #0a2a5c;
+  --navy-end: #1a56c5;
+  --coral: #ff6a00;
+  --ink: #0b1220;
+  --paper: #f5f7fb;
+  --foreground-rgb: 11, 18, 32;
+  --background-start-rgb: 245, 247, 251;
+  --background-end-rgb: 255, 255, 255;
+  --feature-border: #d5e0f0;
+  --feature-title: #0d3a8a;
+  --feature-icon: #ff6a00;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: var(--paper);
 }
 
-/* Prevent CLS by ensuring images don't shift layout */
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* Footer: contain layout to reduce CLS from reflow */
 footer {
   contain: layout;
 }
 
-/* Prevent font-related layout shifts */
 * {
   font-family: inherit;
 }
 
-
-/* main: no forced min-height - prevents footer from shifting when main expands late */
-
-
-
-.download-btn {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
+.hero-gradient {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(255, 106, 0, 0.18), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 10%, rgba(43, 109, 224, 0.35), transparent 50%),
+    linear-gradient(145deg, #061530 0%, #0a2a5c 38%, #1246b0 78%, #1a56c5 100%);
 }
 
-.download-btn:hover {
-  transform: translateY(-2px);
+.section-kicker {
+  @apply mb-2 text-xs font-bold uppercase tracking-[0.16em] text-navy-700;
 }
 
-.download-btn:hover .download-icon {
-  animation: bounce 0.5s ease infinite;
+/* —— Article / markdown typography —— */
+.prose-track {
+  @apply text-ink-soft;
 }
 
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-2px);
-  }
+.prose-track > :first-child {
+  margin-top: 0;
 }
 
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+.prose-h2 {
+  @apply relative mt-12 mb-5 flex gap-3 font-display text-[1.55rem] font-bold leading-snug tracking-tight text-ink md:text-[1.85rem];
 }
 
-.stat-card {
-  background: rgba(10, 16, 41, 0.8);
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
+.prose-h2-bar {
+  @apply mt-1.5 h-[1.15em] w-1 shrink-0 rounded-full bg-gradient-to-b from-navy-700 to-brand;
 }
 
-.stat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+.prose-h3 {
+  @apply mt-9 mb-3 border-l-[3px] border-navy-500/50 pl-3.5 font-display text-xl font-semibold tracking-tight text-ink md:text-[1.35rem];
 }
 
-/* Prevent layout shift by ensuring content takes up space */
-.stars-bg {
-  pointer-events: none;
-} 
+.prose-h4 {
+  @apply mt-7 mb-2 font-display text-lg font-semibold text-navy-900;
+}
+
+.prose-p {
+  @apply mb-5 text-[1.0625rem] leading-[1.8] text-ink-soft;
+}
+
+.prose-track > .prose-p:first-child {
+  @apply text-[1.125rem] leading-[1.85] text-ink-soft;
+}
+
+.prose-ul {
+  @apply mb-6 ml-0 list-none space-y-2.5;
+}
+
+.prose-ol {
+  @apply mb-6 ml-0 list-none space-y-2.5;
+  counter-reset: prose-step;
+}
+
+.prose-li {
+  @apply relative pl-7 text-[1.05rem] leading-[1.7] text-ink-soft;
+}
+
+.prose-ul > .prose-li::before {
+  content: "";
+  @apply absolute left-0 top-[0.55em] h-2 w-2 rounded-full bg-brand;
+  box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.18);
+}
+
+.prose-ol > .prose-li {
+  counter-increment: prose-step;
+}
+
+.prose-ol > .prose-li::before {
+  content: counter(prose-step);
+  @apply absolute left-0 top-0 flex h-5 w-5 items-center justify-center rounded-full bg-navy-100 font-display text-[0.7rem] font-bold text-navy-800;
+}
+
+.prose-a {
+  @apply font-semibold text-navy-700 underline underline-offset-[3px] transition-colors hover:text-brand;
+  text-decoration-color: rgba(18, 70, 176, 0.35);
+}
+
+.prose-a:hover {
+  text-decoration-color: rgba(255, 106, 0, 0.5);
+}
+
+.prose-strong {
+  @apply font-semibold text-ink;
+}
+
+.prose-em {
+  @apply italic text-ink-mute;
+}
+
+.prose-quote {
+  @apply my-8 rounded-2xl border border-navy-100 bg-navy-50/70 px-5 py-4 text-[1.05rem] leading-relaxed text-navy-950;
+  border-left-width: 4px;
+  border-left-color: var(--brand);
+}
+
+.prose-quote p {
+  @apply mb-0 last:mb-0;
+}
+
+.prose-hr {
+  @apply my-10 border-0 border-t border-slate-200;
+}
+
+.prose-figure {
+  @apply my-9 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-soft;
+}
+
+.prose-figure img {
+  @apply m-0 block w-full;
+}
+
+.prose-caption {
+  @apply border-t border-slate-100 bg-white px-4 py-2.5 text-center text-sm text-ink-mute;
+}
+
+.prose-table-wrap {
+  @apply my-8 overflow-x-auto rounded-xl border border-slate-200 shadow-sm;
+}
+
+.prose-table {
+  @apply w-full min-w-[28rem] border-collapse text-left text-sm;
+}
+
+.prose-table thead {
+  @apply bg-navy-900 text-white;
+}
+
+.prose-table th {
+  @apply px-4 py-3 font-display font-semibold;
+}
+
+.prose-table td {
+  @apply border-t border-slate-100 px-4 py-3 text-ink-soft;
+}
+
+.prose-table tbody tr:nth-child(even) {
+  @apply bg-slate-50/80;
+}
+
+.focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2;
+}

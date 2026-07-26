@@ -3,92 +3,57 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   compress: true,
-  
-  // Target modern browsers - no legacy polyfills
+
   compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
+    removeConsole: process.env.NODE_ENV === "production",
   },
-  
-  // Optimize images
+
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'slotspk.com.pk',
+        protocol: "https",
+        hostname: "s.trackingmore.com",
+      },
+      {
+        protocol: "https",
+        hostname: "jcextracking.net",
       },
     ],
-    formats: ['image/webp'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    formats: ["image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    qualities: [75, 80, 90, 100], // Configure allowed image quality values
+    qualities: [75, 80, 90, 100],
   },
 
   async redirects() {
     return [
+      { source: "/about", destination: "/about-us", permanent: true },
+      { source: "/privacy", destination: "/privacy-policy", permanent: true },
+      { source: "/contact", destination: "/contact-us", permanent: true },
+      { source: "/blog", destination: "/category/blog", permanent: true },
       {
-        source: '/about',
-        destination: '/about-us',
+        source: "/aliexpress-tracking-shows-no-updates-yet",
+        destination: "/jcex-tracking-shows-no-updates-yet",
         permanent: true,
       },
       {
-        source: '/\\$',
-        destination: '/',
+        source: "/aliexpress-tracking-not-updating",
+        destination: "/jcex-tracking-not-updating",
         permanent: true,
       },
       {
-        source: '/\\&',
-        destination: '/',
-        permanent: true,
-      },
-      // Legacy Card Rummy slugs → Alano DT 6
-      {
-        source: '/download-card-rummy',
-        destination: '/download-alano-dt-6',
+        source: "/how-to-track-your-aliexpress-order-in-2026",
+        destination: "/how-to-track-your-jcex-order-in-2026",
         permanent: true,
       },
       {
-        source: '/deposit-money-in-card-rummy',
-        destination: '/deposit-money-in-alano-dt-6',
+        source: "/how-to-track-your-aliexpress-order-with-aliexpresstracking-2025-guide",
+        destination: "/how-to-track-your-jcex-shipment-guide",
         permanent: true,
       },
       {
-        source: '/withdraw-money-from-card-rummy',
-        destination: '/withdraw-money-from-alano-dt-6',
-        permanent: true,
-      },
-      {
-        source: '/card-rummy-for-pc',
-        destination: '/alano-dt-6-for-pc',
-        permanent: true,
-      },
-      {
-        source: '/blog/create-card-rummy-account-and-login',
-        destination: '/blog/create-alano-dt-6-account-and-login',
-        permanent: true,
-      },
-      {
-        source: '/blog/create-account-login',
-        destination: '/blog/create-alano-dt-6-account-and-login',
-        permanent: true,
-      },
-      {
-        source: '/blog/is-card-rummy-safe-legal-pakistan',
-        destination: '/blog/is-alano-dt-6-safe-pakistan',
-        permanent: true,
-      },
-      {
-        source: '/blog/card-rummy-bonuses-vip-guide',
-        destination: '/blog/alano-dt-6-bonuses-vip-guide',
-        permanent: true,
-      },
-      {
-        source: '/blog/tips-to-win-big-in-card-rummy',
-        destination: '/blog/alano-dt-6-tips-to-play-smarter',
-        permanent: true,
-      },
-      {
-        source: '/blog/card-rummy-tips-10-smart-tricks',
-        destination: '/blog/alano-dt-6-tips-to-play-smarter',
+        source: "/aliexpress-shipping-methods-guide",
+        destination: "/jcex-shipping-methods-guide",
         permanent: true,
       },
     ];
@@ -96,173 +61,59 @@ const nextConfig = {
 
   async rewrites() {
     return [
-      {
-        source: '/.well-known/:path*',
-        destination: '/public/.well-known/:path*',
-      },
-      {
-        source: '/card-rummy.webp',
-        destination: '/alano-dt-6.webp',
-      },
-      {
-        source: '/card-rummy-logo.webp',
-        destination: '/alano-dt-6-logo.webp',
-      },
-      {
-        source: '/3-patti-blue-logo.webp',
-        destination: '/alano-dt-6-logo.webp',
-      },
+      // WordPress Yoast-style sitemap alias
+      { source: "/sitemap_index.xml", destination: "/sitemap-index.xml" },
+      { source: "/post-sitemap.xml", destination: "/index.xml" },
+      { source: "/page-sitemap.xml", destination: "/index.xml" },
     ];
   },
 
-  // Optimize headers
   async headers() {
     return [
-      // HTML pages: always revalidate so Googlebot gets fresh content
       {
-        source: '/:path*',
+        source: "/:path*",
         headers: [
+          { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
+          { key: "X-DNS-Prefetch-Control", value: "on" },
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=0, must-revalidate',
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
           },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
-          },
-          {
-            key: 'Strict-Transport-Security',
-            value: 'max-age=63072000; includeSubDomains; preload',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-          {
-            key: 'Content-Security-Policy',
+            key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://www.googletagservices.com https://adservice.google.com",
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https:",
               "font-src 'self' data:",
-              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com",
+              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://api.17track.net https://api.trackingmore.com https://jcextracking.net",
+              "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",
-              "form-action 'self'",
-            ].join('; '),
-          },
-        ],
-      },
-      // Immutable cache only for fingerprinted static assets
-      {
-        source: '/_next/static/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      // Public images: shorter cache so brand asset swaps show up faster
-      {
-        source: '/:path*.webp',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=3600, must-revalidate',
+              "form-action 'self' mailto:",
+            ].join("; "),
           },
         ],
       },
       {
-        source: '/css/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-          {
-            key: 'Content-Type',
-            value: 'text/css',
-          },
-        ],
+        source: "/_next/static/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
       {
-        source: '/favicon.ico',
-        headers: [
-          {
-            key: 'X-Robots-Tag',
-            value: 'noindex',
-          },
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
+        source: "/:path*.webp",
+        headers: [{ key: "Cache-Control", value: "public, max-age=3600, must-revalidate" }],
       },
     ];
   },
 
-  // Handle webpack configuration
-  webpack: (config, { dev, isServer }) => {
-    // Enable proper static file handling
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-      };
-    }
-
-    // Optimize for development
-    if (dev) {
-      config.watchOptions = {
-        poll: 1000,
-        aggregateTimeout: 300,
-      };
-    }
-
-    // Target modern browsers - don't transpile modern JavaScript features
-    if (!isServer) {
-      config.target = ['web', 'es2022'];
-      
-      // Disable Next.js polyfills for modern browsers (Lighthouse: Legacy JavaScript)
-      // Saves ~11KB - polyfills for Array.at, Object.hasOwn, etc. aren't needed for Chrome 90+, Safari 14+, etc.
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        '../build/polyfills/polyfill-module': false,
-        'next/dist/build/polyfills/polyfill-module': false,
-      };
-    }
-
-    return config;
-  },
-
-  // Enable experimental features
   experimental: {
-    optimizeCss: true, // Critters inlines critical CSS
-    inlineCss: true, // Inline CSS in HTML to eliminate render-blocking (improves FCP/LCP)
+    optimizeCss: true,
     scrollRestoration: true,
-    optimizePackageImports: ['react-icons'],
   },
-  
-  // Modern module/nomodule pattern
-  modularizeImports: {
-    'react-icons': {
-      transform: 'react-icons/{{member}}',
-    },
-  },
-}
+};
 
-module.exports = nextConfig 
+module.exports = nextConfig;

@@ -1,21 +1,11 @@
 import { SITE_ORIGIN } from "@/lib/siteConfig";
 
 export function GET() {
-  const body = `# robots.txt for alanodt6.com.pk
+  const body = `# robots.txt for jcextracking.net
 
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /admin/
-
-User-agent: GPTBot
-Disallow: /
-
-User-agent: ClaudeBot
-Disallow: /
-
-User-agent: Google-Extended
-Disallow: /
 
 User-agent: Googlebot
 Allow: /
@@ -24,6 +14,7 @@ User-agent: Bingbot
 Allow: /
 
 Sitemap: ${SITE_ORIGIN}/sitemap-index.xml
+Sitemap: ${SITE_ORIGIN}/sitemap_index.xml
 `;
 
   return new Response(body, {

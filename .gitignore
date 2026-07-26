@@ -36,3 +36,5 @@ next-env.d.ts
 
 # scrape cache
 .firecrawl/
+.env*.local
+.env.local

@@ -1,22 +1,23 @@
 {
-  "name": "Alano DT 6",
-  "short_name": "Alanodt6",
-  "description": "Alano DT 6 APK for Pakistan — Dragon Tiger, slots, and casino games with JazzCash & EasyPaisa support.",
+  "name": "JCEX Tracking",
+  "short_name": "JCEX Tracking",
+  "description": "Track JCEX Express packages worldwide with real-time shipment updates.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#06091F",
-  "theme_color": "#06091F",
+  "background_color": "#F5F7FB",
+  "theme_color": "#0A2A5C",
   "icons": [
     {
-      "src": "/favicon.ico",
-      "sizes": "16x16 32x32 48x48",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "/alano-dt-6-logo.webp",
-      "sizes": "192x192 512x512",
+      "src": "/favicon.webp",
+      "sizes": "192x192",
       "type": "image/webp",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/images/jcex-tracking-logo.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any"
     }
   ]
 }

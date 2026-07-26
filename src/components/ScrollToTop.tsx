@@ -1,17 +1,16 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { useMobileMenu } from './MobileMenuProvider';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 
 export default function ScrollToTop() {
-  const { isOpen: isMobileMenuOpen } = useMobileMenu();
   const [isVisible, setIsVisible] = useState(false);
   const rafId = useRef<number | null>(null);
   const lastRan = useRef(0);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
     const handler = () => {
-      // Read scrollY synchronously in the scroll event (not in rAF) to avoid forced reflow
       const scrollY = window.scrollY;
       if (rafId.current) return;
       rafId.current = requestAnimationFrame(() => {
@@ -33,39 +32,26 @@ export default function ScrollToTop() {
     };
   }, []);
 
-  // Scroll to top smoothly
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
   return (
-    <>
-      {isVisible && !isMobileMenuOpen && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-gray-900 rounded-full shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 group"
+    <AnimatePresence>
+      {isVisible ? (
+        <motion.button
+          key="scroll-top"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-8 right-8 z-50 rounded-full bg-brand p-3 text-white shadow-lift focus-ring"
           aria-label="Scroll to top"
+          initial={reduce ? false : { opacity: 0, y: 16, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={reduce ? undefined : { opacity: 0, y: 12, scale: 0.9 }}
+          whileHover={reduce ? undefined : { y: -3, scale: 1.05 }}
+          whileTap={reduce ? undefined : { scale: 0.96 }}
+          transition={{ type: 'spring', stiffness: 380, damping: 24 }}
         >
-          <svg
-            className="w-6 h-6 transform group-hover:-translate-y-1 transition-transform"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 10l7-7m0 0l7 7m-7-7v18"
-            />
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
           </svg>
-        </button>
-      )}
-    </>
+        </motion.button>
+      ) : null}
+    </AnimatePresence>
   );
 }
-

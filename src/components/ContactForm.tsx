@@ -2,17 +2,17 @@
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { BRAND } from '@/lib/siteConfig';
 
 type FormData = {
   name: string;
   email: string;
-  subject: string;
   message: string;
 };
 
 export default function ContactForm() {
   const [formSubmitted, setFormSubmitted] = useState(false);
-  
+
   const {
     register,
     handleSubmit,
@@ -21,124 +21,76 @@ export default function ContactForm() {
   } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
-    // In a real application, this would send the data to your server
-    console.log(data);
+    const subject = encodeURIComponent(`Contact from ${data.name}`);
+    const body = encodeURIComponent(
+      `Name: ${data.name}\nEmail: ${data.email}\n\n${data.message}`
+    );
+    window.location.href = `mailto:${BRAND.email}?subject=${subject}&body=${body}`;
     setFormSubmitted(true);
     reset();
-    
-    // Reset form status after 5 seconds
-    setTimeout(() => {
-      setFormSubmitted(false);
-    }, 5000);
+    setTimeout(() => setFormSubmitted(false), 5000);
   };
 
   return (
-    <div className="bg-secondary rounded-lg p-6 md:p-8">
-      <h2 className="text-2xl font-bold mb-6 text-white text-center">Send Us a Message</h2>
-      
+    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft md:p-8">
+      <h2 className="font-display text-2xl font-bold text-ink text-center mb-6">Send Us a Message</h2>
+
       {formSubmitted ? (
-        <div className="bg-green-900/50 border border-green-700 text-green-100 rounded-lg p-4 mb-6 text-center">
-          <p>Thank you for your message. We'll get back to you soon!</p>
+        <div className="mb-6 rounded-xl border border-green-200 bg-green-50 p-4 text-center text-green-800">
+          Thanks! Your email client should open shortly. We typically reply within 24–48 hours.
         </div>
       ) : null}
-      
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
-            Your Name
+          <label htmlFor="name" className="mb-1.5 block text-sm font-semibold text-ink">
+            Name
           </label>
           <input
             id="name"
             type="text"
-            className={`w-full px-4 py-2 bg-primary-light border ${
-              errors.name ? 'border-red-500' : 'border-gray-700'
-            } rounded-md text-white focus:outline-none focus:ring-2 focus:ring-accent`}
-            placeholder="John Doe"
+            className="w-full rounded-xl border border-slate-200 px-4 py-3 text-ink focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/20"
             {...register('name', { required: 'Name is required' })}
           />
-          {errors.name && (
-            <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
-          )}
+          {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>}
         </div>
-        
+
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
-            Email Address
+          <label htmlFor="email" className="mb-1.5 block text-sm font-semibold text-ink">
+            Email*
           </label>
           <input
             id="email"
             type="email"
-            className={`w-full px-4 py-2 bg-primary-light border ${
-              errors.email ? 'border-red-500' : 'border-gray-700'
-            } rounded-md text-white focus:outline-none focus:ring-2 focus:ring-accent`}
-            placeholder="john@example.com"
+            className="w-full rounded-xl border border-slate-200 px-4 py-3 text-ink focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/20"
             {...register('email', {
               required: 'Email is required',
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'Invalid email address',
-              },
+              pattern: { value: /^\S+@\S+$/i, message: 'Invalid email' },
             })}
           />
-          {errors.email && (
-            <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
-          )}
+          {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>}
         </div>
-        
+
         <div>
-          <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-1">
-            Subject
-          </label>
-          <input
-            id="subject"
-            type="text"
-            className={`w-full px-4 py-2 bg-primary-light border ${
-              errors.subject ? 'border-red-500' : 'border-gray-700'
-            } rounded-md text-white focus:outline-none focus:ring-2 focus:ring-accent`}
-            placeholder="How can we help?"
-            {...register('subject', { required: 'Subject is required' })}
-          />
-          {errors.subject && (
-            <p className="mt-1 text-sm text-red-500">{errors.subject.message}</p>
-          )}
-        </div>
-        
-        <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
-            Message
+          <label htmlFor="message" className="mb-1.5 block text-sm font-semibold text-ink">
+            Message*
           </label>
           <textarea
             id="message"
             rows={5}
-            className={`w-full px-4 py-2 bg-primary-light border ${
-              errors.message ? 'border-red-500' : 'border-gray-700'
-            } rounded-md text-white focus:outline-none focus:ring-2 focus:ring-accent`}
-            placeholder="Your message here..."
-            {...register('message', {
-              required: 'Message is required',
-              minLength: {
-                value: 10,
-                message: 'Message must be at least 10 characters',
-              },
-            })}
+            className="w-full rounded-xl border border-slate-200 px-4 py-3 text-ink focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/20"
+            {...register('message', { required: 'Message is required' })}
           />
-          {errors.message && (
-            <p className="mt-1 text-sm text-red-500">{errors.message.message}</p>
-          )}
+          {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>}
         </div>
-        
-        <div className="flex justify-center">
-          <button
-            type="submit"
-            className="bg-accent hover:bg-accent-hover text-white font-medium py-2 px-6 rounded inline-flex items-center"
-          >
-            <span>Send Message</span>
-            <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-            </svg>
-          </button>
-        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-xl bg-brand py-3.5 font-bold uppercase tracking-wide text-white transition hover:bg-brand-dark focus-ring"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
-} 
+}

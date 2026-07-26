@@ -1,57 +1,54 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins } from "next/font/google";
+import { Outfit, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ScrollToTopWrapper from "@/components/ScrollToTopWrapper";
+import WebVitalsTracker from "@/components/WebVitalsTracker";
 import { BRAND, IMAGES, SITE_ORIGIN } from "@/lib/siteConfig";
 
-const poppins = Poppins({
+const display = Outfit({
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-display",
+  preload: true,
+});
+
+const body = Source_Sans_3({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-poppins",
+  variable: "--font-body",
   preload: true,
 });
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import DeferredStyles from "@/components/DeferredStyles";
-import ScrollToTopWrapper from "@/components/ScrollToTopWrapper";
-import WebVitalsTracker from "@/components/WebVitalsTracker";
-import { MobileMenuProvider } from "@/components/MobileMenuProvider";
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: "#06091F",
+  themeColor: "#0A2A5C",
   viewportFit: "cover",
-  interactiveWidget: "resizes-visual",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_ORIGIN),
   title: {
-    default: "Alano DT 6 APK Download Pakistan 2026 – Official",
+    default: "JCEX Tracking | Track Orders & Shipments Worldwide",
     template: `%s | ${BRAND.name}`,
   },
-  description:
-    "Alano DT 6 APK 2026 for Pakistan. Download alanodt6, play Dragon Tiger, slots & card tables, earn with JazzCash & EasyPaisa. Free Android install guide.",
+  description: BRAND.description,
   keywords: [
-    "alano dt 6",
-    "alanodt6",
-    "alano dt 6 apk",
-    "alano dt 6 download",
-    "alano dt 6 pakistan",
-    "alanodt6 apk",
-    "alano dt6",
-    "alano dt 6 game",
-    "alano dt 6 real money",
-    "dragon tiger apk pakistan",
-    "JazzCash gaming",
-    "EasyPaisa gaming",
-    "earning app Pakistan 2026",
+    "jcex tracking",
+    "track jcex package",
+    "jcex express tracking",
+    "jcex shipment tracking",
+    "track package",
+    "jcextracking",
   ],
-  authors: [{ name: `${BRAND.name} Team` }],
+  authors: [{ name: BRAND.name }],
   creator: BRAND.name,
   publisher: BRAND.name,
   robots: {
@@ -67,12 +64,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", type: "image/x-icon", sizes: "any" },
-      { url: IMAGES.logo, type: "image/webp", sizes: "192x192" },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: IMAGES.favicon, type: "image/webp", sizes: "192x192" },
       { url: IMAGES.logo, type: "image/webp", sizes: "512x512" },
     ],
-    apple: [{ url: IMAGES.logo, sizes: "180x180" }],
-    shortcut: [{ url: "/favicon.ico", type: "image/x-icon" }],
+    apple: [{ url: IMAGES.favicon, sizes: "180x180" }],
   },
   verification: {
     google: "8a7c21f6e90a89ef",
@@ -81,9 +77,8 @@ export const metadata: Metadata = {
     canonical: SITE_ORIGIN,
   },
   openGraph: {
-    title: "Alano DT 6 APK Download Pakistan 2026 – Official",
-    description:
-      "Download Alano DT 6 APK for Pakistan. Play Dragon Tiger, slots and card games with JazzCash & EasyPaisa withdrawals.",
+    title: "JCEX Tracking | Track Orders & Shipments Worldwide",
+    description: BRAND.description,
     url: SITE_ORIGIN,
     siteName: BRAND.name,
     locale: "en_US",
@@ -91,36 +86,22 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${SITE_ORIGIN}${IMAGES.og}`,
-        width: 1200,
-        height: 630,
-        alt: `${BRAND.name} - Dragon Tiger & casino APK for Pakistan`,
-      },
-      {
-        url: `${SITE_ORIGIN}${IMAGES.ogSquare}`,
-        width: 800,
-        height: 800,
-        alt: `${BRAND.name} - Dragon Tiger & casino APK for Pakistan`,
+        width: 512,
+        height: 512,
+        alt: `${BRAND.name} — track JCEX packages worldwide`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alano DT 6 APK Download Pakistan 2026 – Official",
-    description:
-      "Download Alano DT 6 APK for Pakistan. Play Dragon Tiger, slots and card games with JazzCash & EasyPaisa withdrawals.",
+    title: "JCEX Tracking | Track Orders & Shipments Worldwide",
+    description: BRAND.description,
     creator: BRAND.twitter,
-    images: [
-      {
-        url: `${SITE_ORIGIN}${IMAGES.twitter}`,
-        width: 1200,
-        height: 600,
-        alt: `${BRAND.name} - Dragon Tiger & casino APK for Pakistan`,
-      },
-    ],
+    images: [`${SITE_ORIGIN}${IMAGES.og}`],
   },
   applicationName: BRAND.name,
-  category: "Gaming",
-  classification: "Dragon Tiger Gaming Platform",
+  category: "Logistics",
+  classification: "Package Tracking Service",
 };
 
 export default function RootLayout({
@@ -128,23 +109,30 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
+
   return (
-    <html lang="en" className={poppins.variable} suppressHydrationWarning>
+    <html lang="en" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16 32x32" />
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="icon" href={IMAGES.logo} type="image/webp" sizes="192x192" />
-        <link rel="icon" href={IMAGES.logo} type="image/webp" sizes="512x512" />
-        <link rel="apple-touch-icon" href={IMAGES.logo} sizes="180x180" />
-
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-
-        <Script id="deferred-manifest" strategy="lazyOnload">
-          {`(function(){var l=document.createElement('link');l.rel='manifest';l.href='/manifest.json';document.head.appendChild(l);})();`}
-        </Script>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href={IMAGES.favicon} type="image/webp" sizes="192x192" />
+        <link rel="apple-touch-icon" href={IMAGES.favicon} sizes="180x180" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="preconnect" href="https://s.trackingmore.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://s.trackingmore.com" />
+        {adsenseClient && (
+          <>
+            <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
+            <Script
+              id="adsense"
+              async
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
+              crossOrigin="anonymous"
+              strategy="lazyOnload"
+            />
+          </>
+        )}
         {typeof process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID === "string" &&
           process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID &&
           !/^G-XXXXXXXXXX$/i.test(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID) && (
@@ -160,7 +148,7 @@ export default function RootLayout({
                 gtag('js', new Date());
                 gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}', {
                   page_path: window.location.pathname,
-                  send_page_view: false,
+                  send_page_view: true,
                   transport_type: 'beacon'
                 });
               `}
@@ -168,24 +156,11 @@ export default function RootLayout({
             </>
           )}
       </head>
-      <body
-        className={`${poppins.className} antialiased bg-primary text-white min-h-screen flex flex-col`}
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 10% 20%, rgba(10, 16, 41, 0.4) 0%, rgba(6, 9, 31, 0.01) 90%)",
-          backgroundAttachment: "fixed",
-          minHeight: "100vh",
-        }}
-        suppressHydrationWarning
-      >
-        <div className="stars-bg fixed inset-0 z-0 opacity-20"></div>
-        <MobileMenuProvider>
-          <Header />
-          <main className="relative z-10">{children}</main>
-          <DeferredStyles />
-          <Footer />
-          <ScrollToTopWrapper />
-        </MobileMenuProvider>
+      <body className={`${body.className} antialiased bg-paper text-ink min-h-screen flex flex-col`} suppressHydrationWarning>
+        <Header />
+        <main className="relative flex-1">{children}</main>
+        <Footer />
+        <ScrollToTopWrapper />
         <WebVitalsTracker />
 
         <Script
@@ -198,32 +173,24 @@ export default function RootLayout({
               name: BRAND.name,
               url: SITE_ORIGIN,
               logo: `${SITE_ORIGIN}${IMAGES.logo}`,
-              description: `${BRAND.name} is a Dragon Tiger and casino-style earning platform for Pakistani Android users with JazzCash and EasyPaisa support.`,
-              sameAs: [`https://twitter.com/alanodt6`],
+              email: BRAND.email,
+              description: BRAND.description,
             }),
           }}
         />
-
         <Script
-          id="app-schema"
+          id="website-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
+              "@type": "WebSite",
               name: BRAND.name,
-              operatingSystem: "Android",
-              applicationCategory: "GameApplication",
-              offers: {
-                "@type": "Offer",
-                price: "0",
-                priceCurrency: "PKR",
-              },
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: BRAND.ratingValue,
-                bestRating: "5",
-                ratingCount: BRAND.ratingCount,
+              url: SITE_ORIGIN,
+              potentialAction: {
+                "@type": "SearchAction",
+                target: `${SITE_ORIGIN}/?tracking_number={search_term_string}`,
+                "query-input": "required name=search_term_string",
               },
             }),
           }}

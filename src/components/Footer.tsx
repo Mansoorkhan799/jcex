@@ -1,73 +1,100 @@
-import Link from 'next/link';
-import { BRAND, DOWNLOAD_URL, ROUTES } from '@/lib/siteConfig';
+import Link from "next/link";
+import Image from "next/image";
+import { ARTICLES, BRAND, IMAGES, ROUTES } from "@/lib/siteConfig";
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-white pt-8 pb-2 px-4 md:px-8 border-t border-gray-800 relative z-20">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="relative z-20 border-t border-navy-900/40 bg-navy-950 text-slate-300">
+      <div className="mx-auto max-w-6xl px-4 py-12 md:px-6">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
-            <h2 className="text-xl font-bold text-accent mb-4">{BRAND.name}</h2>
-            <p className="text-sm text-gray-300 mb-4">
-              {BRAND.name} is a Dragon Tiger and casino-style earning app for Pakistan. Play slots, table games, and card tables with JazzCash and EasyPaisa support.
+            <Link href="/" className="mb-4 inline-flex items-center gap-2.5">
+              <Image
+                src={IMAGES.logo}
+                alt=""
+                width={36}
+                height={36}
+                className="rounded-lg"
+              />
+              <span className="font-display text-lg font-bold text-white">
+                <span className="text-brand">JC</span>EX Tracking
+              </span>
+            </Link>
+            <p className="mt-3 text-sm leading-relaxed text-slate-400">
+              Independent package tracking for JCEX Express and multi-carrier shipments. Real-time
+              updates so you always know where your order is.
             </p>
-            <div className="flex space-x-4">
-              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <svg className="w-5 h-5 text-gray-400 hover:text-accent transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.77,7.46H14.5v-1.9c0-0.9,0.6-1.1,1-1.1h3V0.13H14.5c-4.1,0-5,2.9-5,4.8v2.5H6v4.5h3.5V22h5V11.96h3.35L18.77,7.46z" />
-                </svg>
+            <p className="mt-3 text-xs text-slate-500">
+              Not affiliated with JCEX Express or its parent companies.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="mb-4 font-display text-sm font-bold uppercase tracking-wider text-white">
+              Quick Links
+            </h2>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <Link href={ROUTES.home} className="hover:text-brand transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href={ROUTES.blog} className="hover:text-brand transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href={ROUTES.about} className="hover:text-brand transition-colors">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href={ROUTES.contact} className="hover:text-brand transition-colors">
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link href={ROUTES.privacy} className="hover:text-brand transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href={ROUTES.disclaimer} className="hover:text-brand transition-colors">
+                  Disclaimer
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="mb-4 font-display text-sm font-bold uppercase tracking-wider text-white">
+              Guides
+            </h2>
+            <ul className="space-y-2.5 text-sm">
+              {ARTICLES.slice(0, 4).map((a) => (
+                <li key={a.slug}>
+                  <Link href={`/${a.slug}`} className="hover:text-brand transition-colors line-clamp-1">
+                    {a.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-sm text-slate-400">
+              <a href={`mailto:${BRAND.email}`} className="hover:text-brand transition-colors">
+                {BRAND.email}
               </a>
-            </div>
-          </div>
-
-          <div>
-            <h2 className="text-lg font-semibold mb-4 text-accent">Quick Links</h2>
-            <ul className="space-y-2 text-sm">
-              <li><Link href={ROUTES.home} className="text-gray-300 hover:text-accent transition-colors">Home</Link></li>
-              <li><Link href={ROUTES.download} className="text-gray-300 hover:text-accent transition-colors">Download</Link></li>
-              <li><Link href={ROUTES.pc} className="text-gray-300 hover:text-accent transition-colors">PC Version</Link></li>
-              <li><Link href={ROUTES.blog} className="text-gray-300 hover:text-accent transition-colors">Blog</Link></li>
-              <li><Link href={ROUTES.about} className="text-gray-300 hover:text-accent transition-colors">About Us</Link></li>
-              <li><Link href={ROUTES.contact} className="text-gray-300 hover:text-accent transition-colors">Contact Us</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-lg font-semibold mb-4 text-accent">Resources</h2>
-            <ul className="space-y-2 text-sm">
-              <li><Link href={ROUTES.deposit} className="text-gray-300 hover:text-accent transition-colors">Deposit Guide</Link></li>
-              <li><Link href={ROUTES.withdraw} className="text-gray-300 hover:text-accent transition-colors">Withdraw Guide</Link></li>
-              <li><Link href="/blog/create-alano-dt-6-account-and-login" className="text-gray-300 hover:text-accent transition-colors">Account & Login</Link></li>
-              <li><Link href="/blog/alano-dt-6-tips-to-play-smarter" className="text-gray-300 hover:text-accent transition-colors">Tips to Play Smarter</Link></li>
-              <li><Link href={ROUTES.privacy} className="text-gray-300 hover:text-accent transition-colors">Privacy Policy</Link></li>
-              <li><Link href={ROUTES.disclaimer} className="text-gray-300 hover:text-accent transition-colors">Disclaimer</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-lg font-semibold mb-4 text-accent">Download App</h2>
-            <p className="text-sm text-gray-300 mb-4">
-              Download {BRAND.name} APK to enjoy Dragon Tiger tables, slots, and real cash rewards on Android.
             </p>
-            <a
-              href={DOWNLOAD_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Download ${BRAND.name} app for Android`}
-              className="download-btn bg-transparent hover:bg-[#0ea5e9]/10 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition-all shadow-lg hover:shadow-xl border-2 border-[#0ea5e9]"
-            >
-              <span>DOWNLOAD NOW</span>
-              <div className="download-icon ml-2 bg-[#f97316] rounded-full p-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                </svg>
-              </div>
-            </a>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-4 pb-3 text-center text-sm text-gray-400">
-          <p className="mb-0">© 2026 {BRAND.name}. All rights reserved. | <Link href="/" className="hover:text-accent">{BRAND.domain}</Link></p>
+        <div className="mt-10 border-t border-white/10 pt-6 text-center text-sm text-slate-500">
+          <p>
+            © {new Date().getFullYear()} {BRAND.name}. All rights reserved. |{" "}
+            <Link href="/" className="hover:text-brand">
+              {BRAND.domain}
+            </Link>
+          </p>
         </div>
       </div>
     </footer>
