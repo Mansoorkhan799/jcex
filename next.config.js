@@ -38,7 +38,12 @@ const nextConfig = {
       },
       {
         source: "/aliexpress-tracking-not-updating",
-        destination: "/jcex-tracking-not-updating",
+        destination: "/jcex-tracking-shows-no-updates-yet",
+        permanent: true,
+      },
+      {
+        source: "/jcex-tracking-not-updating",
+        destination: "/jcex-tracking-shows-no-updates-yet",
         permanent: true,
       },
       {

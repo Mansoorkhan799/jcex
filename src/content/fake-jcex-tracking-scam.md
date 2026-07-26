@@ -96,7 +96,7 @@ Hang up on cold callers demanding customs fees. Navigate to the carrier or marke
 
 ### Watch related issues
 
-- Stuck mid-journey? [JCEX tracking not updating](/jcex-tracking-not-updating)  
+- Stuck mid-journey? [JCEX tracking shows no updates yet](/jcex-tracking-shows-no-updates-yet)  
 - Status meanings? [JCEX tracking statuses explained](/jcex-tracking-statuses-explained)  
 - Delivery windows? [How long does JCEX take](/how-long-does-jcex-take)
 

@@ -83,15 +83,6 @@ export const ARTICLES = [
     image: "/images/blog-jcex-tracking-shows-no-updates-yet.webp",
   },
   {
-    slug: "jcex-tracking-not-updating",
-    title: "JCEX Tracking Not Updating? Causes & Proven Fixes (2026 Guide)",
-    metaTitle: "JCEX Tracking Not Updating? Causes & Proven Fixes",
-    description:
-      "JCEX tracking not updating? Learn the most common causes, how long international silence lasts, and what to do when your package seems stuck.",
-    date: "2026-04-10",
-    image: "/images/blog-jcex-tracking-not-updating.webp",
-  },
-  {
     slug: "how-to-track-your-jcex-order-in-2026",
     title: "How to Track Your JCEX Shipment in 2026? A Complete Guide",
     metaTitle: "How to Track Your JCEX Shipment in 2026? A Complete Guide",

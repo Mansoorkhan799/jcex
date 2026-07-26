@@ -79,7 +79,7 @@ See our [JCEX shipping methods guide](/jcex-shipping-methods-guide) for pros, co
 | Arrival + import customs | 1–10 days | Arrived at destination country |
 | Local delivery | 1–7 days | Out for delivery → Delivered |
 
-Quiet gaps during international transit are normal. For stuck timelines, read [JCEX tracking not updating](/jcex-tracking-not-updating).
+Quiet gaps during international transit are normal. For stuck timelines, read [JCEX tracking shows no updates yet](/jcex-tracking-shows-no-updates-yet).
 
 ## How to Estimate *Your* Package’s ETA
 

@@ -40,7 +40,7 @@ JCEX or a partner has the parcel. Sorting and consolidation toward an export gat
 
 The package left the origin network or boarded international transport. **Multi-day silence is normal** while the parcel is on a plane or in a consolidated container.
 
-**What to do:** Keep tracking weekly. Long gaps alone do not mean the parcel is lost — see [tracking not updating](/jcex-tracking-not-updating).
+**What to do:** Keep tracking weekly. Long gaps alone do not mean the parcel is lost — see [no updates yet](/jcex-tracking-shows-no-updates-yet).
 
 ### Arrived at transit hub / Departed facility
 

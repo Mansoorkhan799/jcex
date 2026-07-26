@@ -141,7 +141,7 @@ Treat the shipment as missing and push for a refund or reshipment if:
 If your status is stuck earlier in the journey, these guides may help more:
 
 - [JCEX tracking shows no updates yet](/jcex-tracking-shows-no-updates-yet)
-- [JCEX tracking not updating](/jcex-tracking-not-updating)
+- [JCEX tracking shows no updates yet](/jcex-tracking-shows-no-updates-yet)
 - [How to track your JCEX shipment](/how-to-track-your-jcex-shipment-guide)
 
 ## FAQs
