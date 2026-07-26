@@ -45,6 +45,12 @@ export const SITEMAP_IMAGES: SitemapImage[] = [
     caption: "JCEX brand mark used on the tracking hero",
   },
   {
+    path: IMAGES.website,
+    pagePath: "/",
+    title: `${BRAND.name} homepage cover`,
+    caption: "Track JCEX Express packages with real-time shipment updates",
+  },
+  {
     path: IMAGES.og,
     pagePath: "/",
     title: `${BRAND.name} open graph image`,

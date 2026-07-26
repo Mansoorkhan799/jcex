@@ -192,17 +192,3 @@ You should open a dispute if:
 JCEX tracking not updating is frustrating, but in most cases, it’s part of **normal international shipping behavior**, not a problem. Understanding how logistics, customs, and carrier handovers work helps you stay calm and take the right steps at the right time.
 
 By following the fixes outlined in this guide, you can avoid unnecessary stress, protect your money, and confidently track your JCEX orders from dispatch to delivery.
-
-### Leave a Reply [Cancel reply](/jcex-tracking-not-updating/\#respond)
-
-Your email address will not be published.Required fields are marked \*
-
-Comment \*
-
-Name \*
-
-Email \*
-
-Website
-
-Save my name, email, and website in this browser for the next time I comment.

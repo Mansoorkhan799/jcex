@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { PageBannerPattern } from "@/components/BoxPattern";
 import { FadeIn, Stagger, StaggerItem } from "@/components/motion/Motion";
 import { ARTICLES } from "@/lib/siteConfig";
 
@@ -29,18 +28,14 @@ export default function HomeGuides() {
                   href={`/${a.slug}`}
                   className="group block overflow-hidden rounded-2xl border border-slate-200 bg-paper shadow-sm transition hover:border-navy-200 hover:shadow-soft"
                 >
-                  <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden bg-gradient-to-br from-navy-950 via-navy-900 to-navy-700">
-                    <PageBannerPattern opacity={0.45} />
-                    <span className="relative h-16 w-16 overflow-hidden rounded-xl shadow-md ring-1 ring-white/15 transition duration-500 group-hover:scale-105">
-                      <Image
-                        src={a.image}
-                        alt={a.title}
-                        width={64}
-                        height={64}
-                        className="h-full w-full object-cover"
-                        sizes="64px"
-                      />
-                    </span>
+                  <div className="relative aspect-[16/10] overflow-hidden bg-navy-100">
+                    <Image
+                      src={a.image}
+                      alt={a.title}
+                      fill
+                      className="object-cover transition duration-500 group-hover:scale-[1.03]"
+                      sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
+                    />
                   </div>
                   <div className="p-5">
                     <h3 className="font-display text-lg font-semibold text-ink group-hover:text-navy-800 line-clamp-2">

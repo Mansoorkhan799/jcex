@@ -132,17 +132,3 @@ Tracking your JCEX order in 2026 is easier and more transparent than ever. Wheth
 If you follow the steps outlined in this guide, you’ll never have to wonder where your package is again.
 
 Happy shopping!
-
-### Leave a Reply [Cancel reply](/how-to-track-your-jcex-order-in-2026/\#respond)
-
-Your email address will not be published.Required fields are marked \*
-
-Comment \*
-
-Name \*
-
-Email \*
-
-Website
-
-Save my name, email, and website in this browser for the next time I comment.

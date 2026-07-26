@@ -24,7 +24,7 @@ export function articleMetadata(article: ArticleMeta): Metadata {
       siteName: BRAND.name,
       type: "article",
       publishedTime: article.date,
-      images: [{ url: `${SITE_ORIGIN}${article.image}`, width: 512, height: 512, alt: article.title }],
+      images: [{ url: `${SITE_ORIGIN}${article.image}`, width: 1536, height: 1024, alt: article.title }],
     },
     twitter: {
       card: "summary_large_image",
@@ -35,13 +35,16 @@ export function articleMetadata(article: ArticleMeta): Metadata {
   };
 }
 
-function GuideCardThumb({ src }: { src: string }) {
+function GuideCardThumb({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="relative flex aspect-[16/9] items-center justify-center overflow-hidden bg-gradient-to-br from-navy-950 via-navy-900 to-navy-700">
-      <PageBannerPattern opacity={0.45} />
-      <span className="relative h-14 w-14 overflow-hidden rounded-xl shadow-md ring-1 ring-white/15">
-        <Image src={src} alt="" width={56} height={56} className="h-full w-full object-cover" sizes="56px" />
-      </span>
+    <div className="relative aspect-[16/9] overflow-hidden bg-navy-100">
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className="object-cover transition duration-500 group-hover:scale-[1.03]"
+        sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
+      />
     </div>
   );
 }
@@ -117,33 +120,33 @@ export default function ArticlePage({
             <h1 className="font-display text-3xl font-extrabold tracking-tight md:text-4xl md:leading-tight">
               {article.title}
             </h1>
-            <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-white/80">
-              <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-lg ring-1 ring-white/20">
-                <Image
-                  src={article.image}
-                  alt=""
-                  width={36}
-                  height={36}
-                  className="h-full w-full object-cover"
-                  priority
-                />
-              </span>
-              <p>
-                <time dateTime={article.date}>
-                  {new Date(article.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </time>
-                <span className="mx-2">·</span>
-                <span>{BRAND.name}</span>
-              </p>
-            </div>
+            <p className="mt-5 text-sm text-white/80">
+              <time dateTime={article.date}>
+                {new Date(article.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+              <span className="mx-2">·</span>
+              <span>{BRAND.name}</span>
+            </p>
           </div>
         </header>
 
         <div className="mx-auto max-w-3xl px-4 py-10 md:px-6 md:py-14">
+          <figure className="mb-10 overflow-hidden rounded-2xl border border-slate-200 bg-navy-50 shadow-sm">
+            <span className="relative block aspect-[16/9] w-full">
+              <Image
+                src={article.image}
+                alt={article.title}
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width:768px) 100vw, 760px"
+              />
+            </span>
+          </figure>
           <MarkdownContent content={content} />
         </div>
 
@@ -161,7 +164,7 @@ export default function ArticlePage({
                       href={`/${a.slug}`}
                       className="group block overflow-hidden rounded-2xl border border-slate-200 bg-paper transition hover:border-navy-200 hover:shadow-soft"
                     >
-                      <GuideCardThumb src={a.image} />
+                      <GuideCardThumb src={a.image} alt={a.title} />
                       <div className="p-4">
                         <h3 className="font-display text-base font-semibold text-ink group-hover:text-navy-800 line-clamp-2">
                           {a.title}

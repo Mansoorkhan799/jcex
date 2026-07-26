@@ -147,19 +147,3 @@ Seeing **“no tracking updates yet”** on JCEX is **very common**, especially 
 - Don’t worry unless buyer protection is ending
 
 If you’re patient and follow the correct tracking steps, your order will usually arrive without issues.
-
-* * *
-
-### Leave a Reply [Cancel reply](/jcex-tracking-shows-no-updates-yet/\#respond)
-
-Your email address will not be published.Required fields are marked \*
-
-Comment \*
-
-Name \*
-
-Email \*
-
-Website
-
-Save my name, email, and website in this browser for the next time I comment.

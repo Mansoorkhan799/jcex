@@ -68,7 +68,7 @@ Marketplace tracking is often basic. Third-party trackers like [JCEXTracking.net
 
 Once your package enters your country, tracking it on your local postal or courier website often provides the most accurate last-mile updates. Shipments to the United States commonly transfer to USPS for final delivery. European shipments might move through Royal Mail, Deutsche Post, PostNL, or other national postal services.
 
-![JCEX Tracking using JCEXTracking.net](/images/jcex-tracking.webp)
+![JCEX Tracking using JCEXTracking.net](/images/home-jcex-tracking.webp)
 
 ## How JCEX Tracking Works After Your Parcel Leaves China?
 

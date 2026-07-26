@@ -1,12 +1,7 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-
-const ScrollToTop = dynamic(() => import('@/components/ScrollToTop'), {
-  ssr: false,
-});
+import ScrollToTop from '@/components/ScrollToTop';
 
 export default function ScrollToTopWrapper() {
   return <ScrollToTop />;
 }
-
